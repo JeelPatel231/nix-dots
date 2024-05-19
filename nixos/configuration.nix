@@ -86,6 +86,7 @@
     jq
     dunst
     docker-compose
+    telegram-desktop
   ];
 
   environment.pathsToLink = [ "/libexec" ];
