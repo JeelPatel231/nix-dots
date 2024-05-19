@@ -72,6 +72,7 @@
     firefox
     networkmanagerapplet
     xfce.thunar
+    xorg.xmodmap
     kitty
     fastfetch
     htop
