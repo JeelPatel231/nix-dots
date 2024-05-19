@@ -26,6 +26,9 @@
   nixpkgs.config.pulseaudio = true;
   hardware.pulseaudio.enable = true;
   hardware.enableAllFirmware  = true;
+  
+  # brightness
+  programs.light.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -53,7 +56,7 @@
   users.users.jeel = {
     isNormalUser = true;
     description = "Jeel";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [
       vscode
       slack

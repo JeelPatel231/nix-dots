@@ -11,6 +11,10 @@ color=#ffcc00
 command=echo "$(cat /sys/class/power_supply/BAT*/status) : $(cat /sys/class/power_supply/BAT*/capacity)"
 interval=5
 
+[brightness]
+command=echo "Bri: $(light)"
+interval=1
+
 [volume]
-command=pactl list short | grep -i running | grep -Eo "^[0-9]+" | xargs -I % pactl get-sink-volume % | grep -Eo [0-9]+%
+command=echo "Vol: $(pactl list short | grep -i running | grep -Eo "^[0-9]+" | xargs -I % pactl get-sink-volume % | grep -Eo [0-9]+%)"
 interval=1
