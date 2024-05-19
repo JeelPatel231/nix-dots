@@ -60,6 +60,8 @@
     packages = with pkgs; [
       vscode
       slack
+      telegram-desktop
+      pkgs.discord
     ];
   };
 
@@ -86,7 +88,6 @@
     jq
     dunst
     docker-compose
-    telegram-desktop
   ];
 
   environment.pathsToLink = [ "/libexec" ];
