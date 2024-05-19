@@ -81,6 +81,7 @@
     unzip
     jq
     dunst
+    docker-compose
   ];
 
   environment.pathsToLink = [ "/libexec" ];
