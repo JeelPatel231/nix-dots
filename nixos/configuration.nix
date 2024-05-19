@@ -21,6 +21,12 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # sound
+  sound.enable = true;
+  nixpkgs.config.pulseaudio = true;
+  hardware.pulseaudio.enable = true;
+  hardware.enableAllFirmware  = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -43,19 +49,14 @@
     LC_CTYPE="en_US.utf8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jeel = {
     isNormalUser = true;
     description = "Jeel";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       vscode
+      slack
     ];
   };
 
@@ -79,14 +80,24 @@
     zip
     unzip
     jq
+    dunst
   ];
 
   environment.pathsToLink = [ "/libexec" ];
   services.xserver = {
     enable = true;
+
+    # Configure keymap in X11
+    layout = "us";
+    xkbVariant = "";
+
     displayManager = {
       startx.enable = true;
       defaultSession = "none+i3";
+    };
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
     };
     desktopManager = { xterm.enable = false; };
     windowManager.i3 = {
@@ -102,6 +113,18 @@
     EDITOR = "nvim";
     BROWSER = "firefox";
     TERMINAL = "kitty";
+  };
+
+  # docker
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+    daemon.settings = {
+      data-root = "/mnt/docker";
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
