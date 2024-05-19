@@ -12,5 +12,5 @@ command=echo "$(cat /sys/class/power_supply/BAT*/status) : $(cat /sys/class/powe
 interval=5
 
 [volume]
-command=pactl list short | grep -i running | grep -Eo "^[0-9]+" | xargs pactl get-sink-volume -0 | grep -Eo [0-9]+%
+command=pactl list short | grep -i running | grep -Eo "^[0-9]+" | xargs -I % pactl get-sink-volume % | grep -Eo [0-9]+%
 interval=1
