@@ -90,6 +90,10 @@
     docker-compose
   ];
 
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
+  ];
+
   environment.pathsToLink = [ "/libexec" ];
   services.xserver = {
     enable = true;
