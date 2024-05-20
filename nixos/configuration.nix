@@ -88,6 +88,7 @@
     jq
     dunst
     docker-compose
+    android-studio
   ];
 
   fonts.packages = with pkgs; [
