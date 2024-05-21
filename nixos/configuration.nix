@@ -23,7 +23,6 @@
 
   # sound
   sound.enable = true;
-  nixpkgs.config.pulseaudio = true;
   hardware.pulseaudio.enable = true;
   hardware.enableAllFirmware  = true;
   
@@ -56,7 +55,7 @@
   users.users.jeel = {
     isNormalUser = true;
     description = "Jeel";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "adbusers" ];
     packages = with pkgs; [
       vscode
       slack
@@ -65,8 +64,23 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # Allow unfree packages
+    config = { 
+      allowUnfree = true;
+      pulseaudio = true;
+    };
+    
+    # Overlay unstable
+    overlays = [
+      (final: prev: {
+        unstable = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") {
+          # https://discourse.nixos.org/t/use-unstable-version-for-some-packages/32880/7
+          config.allowUnfree = true;
+        };
+      })
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -88,8 +102,10 @@
     jq
     dunst
     docker-compose
-    android-studio
+    unstable.android-studio
   ];
+
+  programs.adb.enable = true;
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
