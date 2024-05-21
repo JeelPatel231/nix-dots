@@ -102,7 +102,7 @@
     jq
     dunst
     docker-compose
-    unstable.android-studio
+    unstable.androidStudioPackages.canary
   ];
 
   programs.adb.enable = true;
