@@ -55,7 +55,7 @@
   users.users.jeel = {
     isNormalUser = true;
     description = "Jeel";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "kvm" "adbusers" ];
     packages = with pkgs; [
       vscode
       slack
