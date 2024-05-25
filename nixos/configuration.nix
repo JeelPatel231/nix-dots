@@ -113,6 +113,8 @@
 
   programs.adb.enable = true;
 
+  networking.firewall.enable = false;
+
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" ]; })
   ];
