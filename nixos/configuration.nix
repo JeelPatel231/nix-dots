@@ -67,6 +67,7 @@
       slack
       telegram-desktop
       pkgs.discord
+      (pkgs.callPackage ./custom-pkgs/spotify-adblock.nix {})
     ];
   };
 
