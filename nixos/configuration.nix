@@ -247,4 +247,14 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 
+  ### For running generic linux binaries in nix os
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # dynmically linked dependencies for binaries go here
+      stdenv.cc.cc.lib
+      zlib
+    ];
+  };
+
 }
