@@ -16,5 +16,5 @@ command=echo "Bri: $(light)"
 interval=1
 
 [volume]
-command=echo "Vol: $(pactl list short | grep -i running | grep -Eo "^[0-9]+" | xargs -I % pactl get-sink-volume % | grep -Eo [0-9]+%)"
+command=wpctl get-volume @DEFAULT_AUDIO_SINK@
 interval=1
