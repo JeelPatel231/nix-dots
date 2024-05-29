@@ -107,6 +107,7 @@
     unzip
     jq
     dunst
+    playerctl
     docker-compose
     unstable.androidStudioPackages.canary
   ];
