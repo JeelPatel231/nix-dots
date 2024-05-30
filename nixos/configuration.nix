@@ -109,8 +109,10 @@
     jq
     dunst
     playerctl
+    xclip
     docker-compose
     unstable.androidStudioPackages.canary
+    unstable.jetbrains.idea-community-bin
   ];
 
   programs.adb.enable = true;
