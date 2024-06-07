@@ -24,3 +24,7 @@ reboot(){
     systemctl reboot
   fi
 }
+
+nixenv() {
+  sudo nix-env -p /nix/var/nix/profiles/system $@
+}
