@@ -108,12 +108,20 @@
     unzip
     jq
     dunst
+    pass
     playerctl
     xclip
     docker-compose
     unstable.androidStudioPackages.canary
     unstable.jetbrains.idea-community-bin
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
 
   programs.adb.enable = true;
 
