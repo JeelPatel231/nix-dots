@@ -15,9 +15,9 @@
       owner = "abba23";
       repo = "spotify-adblock";
       rev = "5a3281dee9f889afdeea7263558e7a715dcf5aab";
-      hash = "sha256-5tZ+Y7dhzb6wmyQ+5FIJDHH0KqkXbiB259Yo7ATGjSU=";
+      hash = "sha256-UzpHAHpQx2MlmBNKm2turjeVmgp5zXKWm3nZbEo0mYE=";
     };
-    cargoSha256 = "sha256-q6Z7lfVNs2MEhq8lOMqFBNDRCLmvH0lxoTJX9L/wbuU=";
+    cargoSha256 = "sha256-wPV+ZY34OMbBrjmhvwjljbwmcUiPdWNHFU3ac7aVbIQ=";
 
     patchPhase = ''
       substituteInPlace src/lib.rs \

@@ -119,7 +119,7 @@
   services.pcscd.enable = true;
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
     enableSSHSupport = true;
   };
 
@@ -130,20 +130,23 @@
   ];
 
   environment.pathsToLink = [ "/libexec" ];
+  
+  services.displayManager.defaultSession = "none+i3";
+  
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+  };
+
   services.xserver = {
     enable = true;
 
     # Configure keymap in X11
-    layout = "us";
-    xkbVariant = "";
+    xkb.layout = "us";
+    xkb.variant = "";
 
     displayManager = {
       startx.enable = true;
-      defaultSession = "none+i3";
-    };
-    libinput = {
-      enable = true;
-      touchpad.naturalScrolling = true;
     };
     desktopManager = { xterm.enable = false; };
     windowManager.i3 = {
