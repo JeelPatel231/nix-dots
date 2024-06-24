@@ -112,6 +112,7 @@
     playerctl
     xclip
     docker-compose
+    mpv
     unstable.androidStudioPackages.canary
     unstable.jetbrains.idea-community-bin
   ];
