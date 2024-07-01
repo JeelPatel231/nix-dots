@@ -28,3 +28,7 @@ reboot(){
 nixenv() {
   sudo nix-env -p /nix/var/nix/profiles/system $@
 }
+
+
+
+eval "$(direnv hook bash)"
