@@ -144,6 +144,7 @@
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;
+    touchpad.tappingDragLock = false;
   };
 
   services.xserver = {
