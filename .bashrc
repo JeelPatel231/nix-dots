@@ -29,6 +29,17 @@ nixenv() {
   sudo nix-env -p /nix/var/nix/profiles/system $@
 }
 
+ldenv() {
+  export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+}
+
+disable_internal_keyboard(){
+  xinput disable "AT Translated Set 2 keyboard"
+}
+
+enable_internal_keyboard(){
+  xinput enable "AT Translated Set 2 keyboard"
+}
 
 
 eval "$(direnv hook bash)"

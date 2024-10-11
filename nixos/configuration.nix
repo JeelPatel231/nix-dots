@@ -64,9 +64,9 @@
   users.users.jeel = {
     isNormalUser = true;
     description = "Jeel";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" "kvm" "adbusers" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" "video" "kvm" "adbusers" ];
     packages = with pkgs; [
-      vscode
+      unstable.vscode
       slack
       telegram-desktop
       pkgs.discord
@@ -123,6 +123,19 @@
   ];
 
   services.pcscd.enable = true;
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      domain = true;
+      hinfo = true;
+      userServices = true;
+      workstation = true;
+    };
+  };
   
   programs.direnv.enable = true;
   programs.gnupg.agent = {
@@ -147,6 +160,8 @@
     touchpad.tappingDragLock = false;
   };
 
+  programs.thunar.plugins = [ pkgs.xfce.thunar-archive-plugin ];
+
   services.xserver = {
     enable = true;
 
@@ -157,7 +172,6 @@
     displayManager = {
       startx.enable = true;
     };
-    desktopManager = { xterm.enable = false; };
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [ 
@@ -255,7 +269,18 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+    settings.X11Forwarding = true;
+  };
+
+  services.xrdp.enable = true;
+  services.xrdp.audio.enable = true;
+
+  networking.firewall.allowedTCPPorts = [ 3389 ];
+
+  services.logind.lidSwitchExternalPower = "ignore";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
